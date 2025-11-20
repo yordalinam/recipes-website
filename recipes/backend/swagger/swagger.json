@@ -1,0 +1,151 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Recipe API",
+    "version": "1.0.0",
+    "description": "API for managing recipes"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000"
+    }
+  ],
+  "paths": {
+    "/api/recipes": {
+      "get": {
+        "summary": "Get all recipes",
+        "responses": {
+          "200": {
+            "description": "List of all recipes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/Recipe" }
+                }
+              }
+            }
+          },
+          "500": { "description": "Server error" }
+        }
+      },
+      "post": {
+        "summary": "Add a new recipe",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Recipe" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Recipe created successfully" },
+          "500": { "description": "Server error" }
+        }
+      }
+    },
+    "/api/recipes/{id}": {
+      "get": {
+        "summary": "Get recipe by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Recipe ID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Recipe data",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Recipe" }
+              }
+            }
+          },
+          "500": { "description": "Server error" }
+        }
+      },
+      "put": {
+        "summary": "Update recipe by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Recipe ID"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/Recipe" }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Updated recipe" },
+          "404": { "description": "Recipe not found" },
+          "500": { "description": "Server error" }
+        }
+      },
+      "delete": {
+        "summary": "Delete recipe by ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "description": "Recipe ID"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Recipe deleted successfully" },
+          "404": { "description": "Recipe not found" },
+          "500": { "description": "Server error" }
+        }
+      }
+    }
+  },
+ "components": {
+  "schemas": {
+    "Recipe": {
+      "type": "object",
+      "required": ["name", "ingredients", "method", "author"],
+      "properties": {
+        "_id": { "type": "string", "description": "Recipe ID" },
+        "name": { "type": "string", "description": "Recipe name" },
+        "ingredients": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "List of ingredients"
+        },
+        "method": { "type": "string", "description": "Cooking method" },
+        "author": { "type": "string", "description": "Recipe author" },
+        "description": { "type": "string", "description": "Optional recipe description" },
+        "image": { "type": "string", "description": "Image URL" },
+        "tags": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Recipe tags"
+        },
+        "cookingTime": { "type": "integer", "description": "Cooking time in minutes" },
+        "servings": { "type": "integer", "description": "Number of servings" },
+        "allergens": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Optional list of allergens for the recipe"
+        },
+        "createdAt": { "type": "string", "format": "date-time", "description": "Creation timestamp" },
+        "updatedAt": { "type": "string", "format": "date-time", "description": "Last update timestamp" }
+      }
+    }
+  }
+}
+}
