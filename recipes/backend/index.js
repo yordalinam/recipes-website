@@ -3,7 +3,8 @@ import express from "express";
 import mongoose from "mongoose";
 import recipeRoute from "./routes/recipe.route.js";
 import swaggerUi from "swagger-ui-express";
-import { loadSwaggerSpec } from "./swagger/loadSwagger.js";
+import { loadSwaggerSpec } from "./swagger/setup.js";
+import "./swagger/setup.js";
 
 const app = express();
 //app.use(cors());
@@ -16,10 +17,9 @@ app.get("/", (req, res) => {
   res.send("Hello from Node API Server😻");
 });
 
-// Connect to MongoDB
 mongoose
   .connect(
-    "mongodb+srv://linavladimirova12_db_user:WVijHmKsRcc4RQjN@backendrecipes.dpj8xrm.mongodb.net/Node-API?appName=BackendRecipes"
+    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@backendrecipes.dpj8xrm.mongodb.net/Node-API?authSource=admin&retryWrites=true&w=majority`
   )
   .then(() => {
     console.log("Connected to the database!");
@@ -42,6 +42,7 @@ async function startServer() {
   });
 
   // Serve Swagger UI and tell it to use the above JSON URL
+  //go to http://localhost:3000/api-docs/ to view api visualised
   app.use(
     "/api-docs",
     swaggerUi.serve,
