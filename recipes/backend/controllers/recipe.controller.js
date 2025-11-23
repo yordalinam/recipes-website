@@ -2,10 +2,8 @@ import Recipe from "../models/recipe.model.js";
 
 export const getRecipes = async (req, res) => {
   try {
-    console.log("before destructuring: Req query", req.query);
     const { allergens, includeIngredients, excludeIngredients, tags } =
       req.query;
-    console.log("Req query", req.query);
 
     let query = {};
 
