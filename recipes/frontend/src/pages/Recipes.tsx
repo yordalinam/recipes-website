@@ -1,6 +1,18 @@
 import { useState } from "react";
+import styled from "styled-components";
 import { useRecipes } from "../api/hooks/useAllRecipes";
 import { Searchbar } from "../components/Searchbar";
+import { RecipeCard } from "../features/recipes/RecipeCard";
+
+const RecipesContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 0 24px;
+  flex-wrap: wrap;
+  gap: 2rem;
+`;
 
 function Recipes() {
   const { data: recipes = [], isLoading, error } = useRecipes({});
@@ -22,20 +34,15 @@ function Recipes() {
   return (
     <>
       <Searchbar onSearch={setSearchQuery} />
-      <ul>
-        {filteredRecipes.length === 0 ? (
-          <li>No recipes found</li>
-        ) : (
-          filteredRecipes.map((recipe) => (
-            <li key={recipe._id}>
-              <h3>{recipe.name}</h3>
-              <p>Author: {recipe.author}</p>
-              <p>Ingredients: {recipe.ingredients.join(", ")}</p>
-              <p>Method: {recipe.method}</p>
-            </li>
-          ))
-        )}
-      </ul>
+      {filteredRecipes.length === 0 ? (
+        <span>No recipes found</span>
+      ) : (
+        <RecipesContainer>
+          {filteredRecipes.map((recipe) => (
+            <RecipeCard key={recipe._id} recipe={recipe} />
+          ))}
+        </RecipesContainer>
+      )}
     </>
   );
 }

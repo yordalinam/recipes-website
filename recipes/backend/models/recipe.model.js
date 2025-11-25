@@ -30,7 +30,6 @@ const RecipeSchema = mongoose.Schema(
     tags: {
       type: [String],
       default: [],
-      required: false,
     },
     cookingTime: {
       type: Number,

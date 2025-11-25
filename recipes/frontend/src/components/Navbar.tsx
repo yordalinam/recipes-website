@@ -4,13 +4,13 @@ import { NavLink } from "react-router";
 //import { Searchbar } from "./Searchbar";
 
 const NavContainer = styled.div`
-  font-size: 1.4rem;
+  font-size: var(--medium-font-size);
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 1.5rem;
+  padding: 0.8rem 1.5rem;
 `;
 
 const NavImgContainer = styled.div`
@@ -22,7 +22,7 @@ const NavImgContainer = styled.div`
 `;
 
 const WebsiteName = styled.span`
-  font-size: 2.2rem;
+  font-size: var(--medium-font-size);
   font-weight: 800;
 `;
 
@@ -48,8 +48,8 @@ function Navbar() {
           </NavLink>
         </NavWrapper>
         <NavWrapper>
-          <NavLink to="/myrecipes">
-            <span>My Favorites</span>
+          <NavLink to="/mykitchen">
+            <span>My Kitchen</span>
           </NavLink>
           <NavLink to="/myaccount">
             <span>My Account</span>

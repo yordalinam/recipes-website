@@ -9,10 +9,10 @@ function Cooking() {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="-117.76 -117.76 747.52 747.52"
       stroke="#a31414"
-      stroke-width="8.704"
+      strokeWidth="8.704"
       transform="matrix(1, 0, 0, 1, 0, 0)"
     >
-      <g id="SVGRepo_bgCarrier" stroke-width="0">
+      <g id="SVGRepo_bgCarrier" strokeWidth="0">
         <rect
           x="-117.76"
           y="-117.76"
@@ -25,8 +25,8 @@ function Cooking() {
       </g>
       <g
         id="SVGRepo_tracerCarrier"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       ></g>
       <g id="SVGRepo_iconCarrier">
         {" "}

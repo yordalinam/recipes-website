@@ -1,4 +1,4 @@
-function Favorites() {
+function MyKitchen() {
   return (
     <>
       <div>My Favorite Recipes</div>
@@ -8,4 +8,4 @@ function Favorites() {
   );
 }
 
-export default Favorites;
+export default MyKitchen;
