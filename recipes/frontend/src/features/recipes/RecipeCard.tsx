@@ -1,27 +1,12 @@
 import styled from "styled-components";
 import ExampleDish from "../../assets/imgs/exampledish.png";
-import { Line } from "../../components/Line";
-import { type Recipe } from "../../api/api";
+//import { Line } from "../../components/Line";
+import Card from "../../components/Card";
+import { type SingleRecipe } from "../../api/api";
 
 interface RecipeCardProps {
-  recipe: Recipe;
+  recipe: SingleRecipe;
 }
-
-const Container = styled.div`
-  font-size: var(--small-font-size);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
-  //margin: 50px 0;
-  padding: 1rem;
-  background-color: var(--secondary-color);
-  color: var(--primary-color);
-  max-width: 18rem;
-  border-radius: 1rem;
-  border: 2px solid var(--dark-green);
-`;
 
 const RecipeName = styled.span`
   font-size: var(--medium-font-size);
@@ -41,21 +26,21 @@ const RecipeDescription = styled.div`
 
 export function RecipeCard({ recipe }: RecipeCardProps) {
   return (
-    <Container>
-      <RecipeName>{recipe.name}</RecipeName>
-      <Line />
+    <Card>
+      {/* <Line /> */}
       <ImageContainer src={recipe.image ?? ExampleDish} alt={recipe.name} />
-      <Line />
-      <RecipeDescription>
+      {/* <Line /> */}
+      {/* <RecipeDescription>
         {recipe.description ?? "No description available"}
-      </RecipeDescription>
-      <Line />
+      </RecipeDescription> */}
+      {/* <Line /> */}
+      <RecipeName>{recipe.name}</RecipeName>
       <div>Servings: {recipe.servings ?? "N/A"}</div>
       <div>
         Cooking time: {recipe.cookingTime ? `${recipe.cookingTime} min` : "N/A"}
       </div>
       <div>Author: {recipe.author}</div>
-      <div>View Recipe</div>
-    </Container>
+      {/* <div>View Recipe</div> */}
+    </Card>
   );
 }
