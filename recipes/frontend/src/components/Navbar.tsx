@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Cooking from "../assets/svgs/Cooking";
-import { NavLink } from "react-router";
-//import { Searchbar } from "./Searchbar";
+import { NavLink, useNavigate } from "react-router";
 
 const NavContainer = styled.div`
   font-size: var(--medium-font-size);
@@ -28,6 +27,9 @@ const WebsiteName = styled.span`
 
 const NavWrapper = styled.div`
   display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   gap: 3rem;
 `;
 
@@ -36,7 +38,9 @@ function Navbar() {
     <>
       <NavContainer>
         <NavImgContainer>
-          <Cooking />
+          <NavLink to="/">
+            <Cooking />
+          </NavLink>
           <WebsiteName>Happy Kitchen</WebsiteName>
         </NavImgContainer>
         <NavWrapper>

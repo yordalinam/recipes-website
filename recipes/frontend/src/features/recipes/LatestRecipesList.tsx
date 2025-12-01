@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { RecipeCard } from "./RecipeCard";
-import { useRecipes } from "../../api/hooks/useAllRecipes";
+import { useRecipes } from "../../api/endpoints/useAllRecipes";
 
 const CardList = styled.div`
-  margin: 0 24px;
+  margin: 50px 24px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -15,7 +15,6 @@ const CardList = styled.div`
 const Title = styled.div`
   font-size: 34px;
   text-align: center;
-  margin-bottom: 50px;
 `;
 
 export function LatestRecipeList() {
@@ -40,7 +39,12 @@ export function LatestRecipeList() {
       </Title>
       <CardList>
         {latestThreeRecipes?.map((recipe) => (
-          <RecipeCard key={recipe._id} recipe={recipe} />
+          <RecipeCard
+            key={recipe._id}
+            recipe={recipe}
+            backgroundColor="var(--secondary-color)"
+            color="var(--primary-color)"
+          />
         ))}
       </CardList>
     </>

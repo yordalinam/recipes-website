@@ -8,7 +8,7 @@
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js",
-    "gen:interface": "openapi-typescript http://localhost:3000/api-docs/swagger.json -o ../frontend/src/api/types/type.ts"
+    "gen:interface": "openapi-typescript http://localhost:3000/api-docs/swagger.json -o ../frontend/src/api/interface/interface.ts"
   },
   "keywords": [],
   "author": "",

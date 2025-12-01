@@ -19,16 +19,25 @@ const Input = styled.input`
   padding: 0.6rem;
   border-radius: 1rem;
   line-height: 1.5rem;
-
   font-size: var(--small-font-size);
-  border: 1px solid var(--dark-green);
+
+  border: 3px solid transparent;
+  background-image: linear-gradient(var(--primary-color), var(--primary-color)),
+    linear-gradient(
+      to right,
+      var(--dark-green) 0%,
+      rgba(9, 46, 14, 0.6) 0%,
+      var(--tetriary-color) 100%
+    );
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
   outline: none;
 
   &::placeholder {
     color: var(--secondary-color);
     opacity: 0.6;
-    line-height: 1.5rem; /* match line-height of input */
-    padding-top: 0; /* optional to fine tune positioning */
+    line-height: 1.5rem;
+    padding-top: 0;
   }
 
   &::-webkit-search-cancel-button {

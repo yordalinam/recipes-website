@@ -2,10 +2,12 @@ import styled from "styled-components";
 import ExampleDish from "../../assets/imgs/exampledish.png";
 //import { Line } from "../../components/Line";
 import Card from "../../components/Card";
-import { type SingleRecipe } from "../../api/api";
+import { type SingleRecipe } from "../../api/type";
 
 interface RecipeCardProps {
   recipe: SingleRecipe;
+  backgroundColor?: string;
+  color?: string;
 }
 
 const RecipeName = styled.span`
@@ -24,9 +26,13 @@ const RecipeDescription = styled.div`
   overflow-y: auto;
 `;
 
-export function RecipeCard({ recipe }: RecipeCardProps) {
+export function RecipeCard({
+  recipe,
+  backgroundColor,
+  color,
+}: RecipeCardProps) {
   return (
-    <Card>
+    <Card backgroundColor={backgroundColor} color={color}>
       {/* <Line /> */}
       <ImageContainer src={recipe.image ?? ExampleDish} alt={recipe.name} />
       {/* <Line /> */}

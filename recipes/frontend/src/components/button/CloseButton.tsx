@@ -26,11 +26,7 @@ const StyledCloseButton = styled.button<{ size: number }>`
 
   &:hover {
     opacity: 1;
-    background-color: var(--dark-green);
-
-    svg {
-      fill: var(--secondary-color);
-    }
+    background-color: var(--tetriary-color);
   }
 `;
 

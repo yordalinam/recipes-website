@@ -1,9 +1,8 @@
-import { useState } from "react";
 import styled from "styled-components";
-import { useRecipes } from "../api/hooks/useAllRecipes";
+import { useRecipes } from "../api/endpoints/useAllRecipes";
 import { Searchbar } from "../components/Searchbar";
 import { RecipeCard } from "../features/recipes/RecipeCard";
-import { useDebounce } from "../api/hooks/useDebounce";
+import { useRecipeSearch } from "../features/hooks/useRecipeSearch";
 import { Loader } from "../components/Loader";
 import Error from "../assets/svgs/Error";
 
@@ -68,20 +67,8 @@ const ErrorMessage = styled.span`
 
 function Recipes() {
   const { data: recipes = [], isLoading, error } = useRecipes({});
-  const [searchQuery, setSearchQuery] = useState("");
-  const debouncedSearchQuery = useDebounce(searchQuery, 700);
-
-  const filteredRecipes = recipes.filter((recipe) => {
-    const query = debouncedSearchQuery.toLowerCase();
-    const fieldsToSearch = [
-      recipe.name,
-      recipe.description,
-      recipe.ingredients?.join(" "),
-    ];
-
-    return fieldsToSearch.some(
-      (field) => field && field.toLowerCase().includes(query)
-    );
+  const { setSearchQuery, filteredRecipes } = useRecipeSearch({
+    recipes,
   });
 
   if (isLoading)
@@ -111,7 +98,12 @@ function Recipes() {
       ) : (
         <RecipesContainer>
           {filteredRecipes.map((recipe) => (
-            <RecipeCard key={recipe._id} recipe={recipe} />
+            <RecipeCard
+              key={recipe._id}
+              recipe={recipe}
+              backgroundColor="var(--primary-color)"
+              color="var(--secondary-color)"
+            />
           ))}
         </RecipesContainer>
       )}

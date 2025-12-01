@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import type { AllRecipes } from "../api";
+import type { AllRecipes } from "../type";
 
 async function fetchRecipes(filters: {
   tags?: string[];
