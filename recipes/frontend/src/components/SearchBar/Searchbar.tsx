@@ -1,34 +1,23 @@
-import { useState } from "react";
 import { CloseButton } from "../button/CloseButton/CloseButton";
 import { Wrapper, Input } from "./styles";
+import { useSearchInput } from "../../features/hooks/useSearchInput";
 
 type SearchbarProps = {
   onSearch: (query: string) => void;
 };
 
 export function Searchbar({ onSearch }: SearchbarProps) {
-  const [searchElement, setSearchElement] = useState("");
-
-  function changeInput(event: React.ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value;
-    setSearchElement(value);
-    onSearch(value);
-  }
-
-  const clearInput = () => {
-    setSearchElement("");
-    onSearch("");
-  };
+  const { inputValue, handleChange, clearInput } = useSearchInput({ onSearch });
 
   return (
     <Wrapper>
       <Input
         type="search"
-        value={searchElement}
+        value={inputValue}
         placeholder="Search recipes or ingredients..."
-        onChange={changeInput}
+        onChange={handleChange}
       />
-      {searchElement && <CloseButton onClick={clearInput} />}
+      {inputValue && <CloseButton onClick={clearInput} />}
     </Wrapper>
   );
 }
