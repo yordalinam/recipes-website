@@ -3,13 +3,13 @@ function Ballon() {
     <svg
       viewBox="-28.48 -28.48 341.73 341.73"
       xmlns="http://www.w3.org/2000/svg"
-      fill="#2d4f43"
-      stroke="#28463c"
+      fill="#acb5b2"
+      stroke="#2d4f43"
       transform="rotate(180)matrix(-1, 0, 0, -1, 0, 0)"
       strokeWidth="0.0028477300000000006"
     >
       <defs>
-        <style>{`.a{fill:#2d4f43;}.b{fill:#acb5b2;}`}</style>
+        <style>{`.a{fill:#acb5b2;}.b{fill:#2d4f43;}`}</style>
       </defs>
       <g id="SVGRepo_iconCarrier">
         <path

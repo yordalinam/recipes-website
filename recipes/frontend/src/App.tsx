@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import Recipes from "./pages/Recipes";
+import Navbar from "./components/NavBar/Navbar";
+import Home from "./pages/Home/Home";
+import { Recipes } from "./pages/Recipes/Recipes";
 import MyKitchen from "./pages/MyKitchen";
 import Account from "./pages/Account";
 

@@ -1,4 +1,4 @@
-import styled, { keyframes } from "styled-components";
+import styled, {keyframes} from "styled-components";
 
 const rotation = keyframes`
   0% {
@@ -9,9 +9,14 @@ const rotation = keyframes`
   }
 `;
 
-const StyledLoader = styled.span`
-  width: 48px;
-  height: 48px;
+export const StyledLoader = styled.span<{
+  $width: string;
+  $height: string;
+  $afterWidth: string;
+  $afterHeight: string;
+}>`
+  width: ${(props) => props.$width};
+  height: ${(props) => props.$height};
   border: 3px solid #acb5b2;
   border-radius: 50%;
   display: inline-block;
@@ -26,17 +31,10 @@ const StyledLoader = styled.span`
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 56px;
-    height: 56px;
+    width: ${(props) => props.$afterWidth};
+    height: ${(props) => props.$afterHeight};
     border-radius: 50%;
     border: 4px solid transparent;
     border-bottom-color: #a31414;
-    //animation: ${rotation} 1s linear infinite reverse;
   }
 `;
-
-function Loader() {
-  return <StyledLoader />;
-}
-
-export { Loader };
