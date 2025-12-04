@@ -4,6 +4,7 @@ import { RecipeCard } from "../../features/recipes/RecipeCard/RecipeCard";
 import { useRecipeSearch } from "../../features/hooks/useRecipeSearch";
 import { Loader } from "../../components/Loader/Loader";
 import Error from "../../assets/svgs/Error";
+import { Dropdown } from "../../components/Dropdown/Dropdown";
 import {
   LoaderContent,
   LoadingMessage,
@@ -12,11 +13,12 @@ import {
   RecipesWrap,
   NoRecipesMessage,
   RecipesContainer,
+  DropdownInputWrapper,
 } from "./styles";
 
 export function Recipes() {
   const { data: recipes = [], isLoading, error, isError } = useRecipes({});
-  const { setSearchQuery, filteredRecipes } = useRecipeSearch({
+  const { searchQuery, setSearchQuery, filteredRecipes } = useRecipeSearch({
     recipes,
   });
 
@@ -41,7 +43,17 @@ export function Recipes() {
 
   return (
     <RecipesWrap>
-      <Searchbar onSearch={setSearchQuery} />
+      <DropdownInputWrapper>
+        <Searchbar
+          isOpen={!!searchQuery && filteredRecipes.length > 0}
+          onSearch={setSearchQuery}
+        />
+        <Dropdown
+          filteredRecipes={filteredRecipes}
+          searchQuery={searchQuery}
+        ></Dropdown>
+      </DropdownInputWrapper>
+
       {filteredRecipes.length === 0 ? (
         <NoRecipesMessage>
           Couldn't find any recipes matching your search. Maybe try again?

@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const Wrapper = styled.div`
   position: relative;
   margin-top: 50px;
+  margin-bottom: 1px;
 `;
 
 export const Input = styled.input`
@@ -10,8 +11,9 @@ export const Input = styled.input`
   color: var(--secondary-color);
   width: 18rem;
   padding: 0.6rem;
-  border-radius: 1rem;
-  line-height: 1.5rem;
+ border-radius: 1rem;
+  border-bottom: 3px solid transparent;
+    line-height: 1.5rem;
   font-size: var(--small-font-size);
 
   border: 3px solid transparent;

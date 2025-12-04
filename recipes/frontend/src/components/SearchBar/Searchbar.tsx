@@ -4,6 +4,7 @@ import { useSearchInput } from "../../features/hooks/useSearchInput";
 
 type SearchbarProps = {
   onSearch: (query: string) => void;
+  isOpen?: boolean;
 };
 
 export function Searchbar({ onSearch }: SearchbarProps) {

@@ -58,3 +58,7 @@ export const ErrorMessage = styled.span`
   font-weight: 500;
   font-size: var(--medium-font-size);
 `;
+
+export const DropdownInputWrapper = styled.div`
+  position: relative;
+`;

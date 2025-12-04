@@ -11,7 +11,16 @@
   --primary-color: #2d4f43;
   --secondary-color: #acb5b2;
   --tetriary-color: #a31414;
+  --medium-green: #193e30;
   --dark-green: #152620;
+  --dark-red: #480d0d;
+
+  --border-gradient: linear-gradient(
+    to right,
+    var(--dark-green) 0%,
+    rgba(9, 46, 14, 0.6) 0%,
+    var(--tetriary-color) 100%
+  );
 
   --largest-font-size: 2.2rem;
   --large-font-size: 1.4rem;
@@ -20,12 +29,12 @@
 }
 ::-webkit-scrollbar {
   width: 7px;
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #152620;
   cursor: pointer;
-
   border-radius: 10px;
 }
 
@@ -43,3 +52,5 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+/* ✅ Custom scrollbar that fits inside border-radius */

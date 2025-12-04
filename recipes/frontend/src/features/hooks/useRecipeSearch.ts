@@ -29,7 +29,6 @@ export function useRecipeSearch({ recipes }: UseRecipeSearchProps) {
     const query = debouncedSearchQuery.toLowerCase();
     const fieldsToSearch = [
       recipe.name,
-      recipe.ingredients?.join(" "),
     ];
 
     return fieldsToSearch.some(
