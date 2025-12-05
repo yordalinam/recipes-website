@@ -4,7 +4,6 @@ import type { AllRecipes } from "../type";
 async function fetchRecipes(filters: {
   tags?: string[];
   includeIngredients?: string[];
-  excludeIngredients?: string[];
   allergens?: string[];
 }) {
   const params = new URLSearchParams();
@@ -15,10 +14,6 @@ async function fetchRecipes(filters: {
 
   if (filters.includeIngredients?.length) {
     params.append('includeIngredients', filters.includeIngredients.join(','));
-  }
-
-  if (filters.excludeIngredients?.length) {
-    params.append('excludeIngredients', filters.excludeIngredients.join(','));
   }
 
   if (filters.allergens?.length) {
@@ -38,7 +33,6 @@ async function fetchRecipes(filters: {
 export function useRecipes(filters: {
   tags?: string[];
   includeIngredients?: string[];
-  excludeIngredients?: string[];
   allergens?: string[];
 }) {
   return useQuery({

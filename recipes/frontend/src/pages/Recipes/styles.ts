@@ -5,6 +5,7 @@ export const RecipesWrap = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 export const RecipesContainer = styled.div`
@@ -12,9 +13,9 @@ export const RecipesContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  margin: 50px 24px;
+  //margin: 50px 24px;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
 `;
 
 export const NoRecipesMessage = styled.div`
@@ -61,4 +62,12 @@ export const ErrorMessage = styled.span`
 
 export const DropdownInputWrapper = styled.div`
   position: relative;
+`;
+
+export const FiltersContainer = styled.div`
+ display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 100%;
 `;

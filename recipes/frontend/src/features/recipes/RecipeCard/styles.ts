@@ -7,8 +7,8 @@ export const RecipeName = styled.span`
 `;
 
 export const ImageContainer = styled.img`
-  width: 18rem;
-  max-height: 20rem;
+  width: 16rem;
+  min-height: 11rem;
 `;
 
 export const RecipeContent = styled.div`

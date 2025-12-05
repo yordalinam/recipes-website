@@ -8,7 +8,7 @@ export const Intro = styled.div`
   position: relative;
   width: 100%;
   min-height: 80vh;
-  margin-bottom: 24px;
+  //margin-bottom: 24px;
 `;
 
 export const MainImage = styled.img`

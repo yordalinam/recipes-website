@@ -2,13 +2,11 @@ import Recipe from "../models/recipe.model.js";
 
 export const getRecipes = async (req, res) => {
   try {
-    const { allergens, includeIngredients, excludeIngredients, tags } =
-      req.query;
+    const { allergens, includeIngredients, tags } = req.query;
 
     let query = {};
 
     if (allergens) {
-      console.log("Req query", req.query);
       const allergenList = allergens.split(",");
       query.$nor = [{ allergens: { $in: allergenList } }];
     }
@@ -17,22 +15,11 @@ export const getRecipes = async (req, res) => {
       query.ingredients = { $all: includeIngredients.split(",") };
     }
 
-    if (excludeIngredients) {
-      query.ingredients = {
-        ...(query.ingredients || {}),
-        $nin: excludeIngredients.split(","),
-      };
-    }
-
     if (tags) {
       query.tags = { $in: tags.split(",") };
     }
 
     const recipes = await Recipe.find(query);
-
-    console.log("Query received:", req.query);
-    console.log("Mongo query used:", query);
-    console.log("Recipes found:", recipes.length);
 
     res.status(200).json(recipes);
   } catch (error) {

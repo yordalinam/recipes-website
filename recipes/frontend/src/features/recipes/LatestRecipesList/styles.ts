@@ -7,7 +7,7 @@ export const CardList = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 3rem;
 `;
 
 export const Title = styled.div`

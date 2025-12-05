@@ -6,7 +6,7 @@ export const Wrapper = styled.div`
   margin-bottom: 1px;
 `;
 
-export const Input = styled.input`
+export const InputStyled = styled.input`
   background-color: var(--primary-color);
   color: var(--secondary-color);
   width: 18rem;

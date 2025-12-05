@@ -1,10 +1,10 @@
 import { useRecipes } from "../../api/endpoints/useAllRecipes";
-import { Searchbar } from "../../components/SearchBar/Searchbar";
 import { RecipeCard } from "../../features/recipes/RecipeCard/RecipeCard";
-import { useRecipeSearch } from "../../features/hooks/useRecipeSearch";
 import { Loader } from "../../components/Loader/Loader";
 import Error from "../../assets/svgs/Error";
-import { Dropdown } from "../../components/Dropdown/Dropdown";
+import { SearchField } from "../../features/recipes/SearchField";
+import { useMultiFilter } from "../../features/hooks/useMultiFilter";
+import { useRecipeFilters } from "../../features/hooks/useRecipeFilters";
 import {
   LoaderContent,
   LoadingMessage,
@@ -13,15 +13,23 @@ import {
   RecipesWrap,
   NoRecipesMessage,
   RecipesContainer,
-  DropdownInputWrapper,
+  FiltersContainer,
 } from "./styles";
+import styled from "styled-components";
+
+const InputRecipesWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 50px 24px;
+`;
 
 export function Recipes() {
   const { data: recipes = [], isLoading, error, isError } = useRecipes({});
-  const { searchQuery, setSearchQuery, filteredRecipes } = useRecipeSearch({
+  const { uniqueTags, uniqueAllergens, allIngredients } =
+    useRecipeFilters(recipes);
+  const { filters, filteredRecipes, updateFilter } = useMultiFilter({
     recipes,
   });
-
   if (isLoading)
     return (
       <LoaderContent>
@@ -29,49 +37,65 @@ export function Recipes() {
         <LoadingMessage>Loading recipes...</LoadingMessage>
       </LoaderContent>
     );
-
-  if (isError) {
+  if (isError)
     return (
       <ErrorMessageContainer>
         <Error />
-        <ErrorMessage>
-          Error loading recipes: {error?.message || "Unknown error"}
-        </ErrorMessage>
+        <ErrorMessage>Error loading recipes: {error?.message}</ErrorMessage>
       </ErrorMessageContainer>
     );
-  }
 
   return (
     <RecipesWrap>
-      <DropdownInputWrapper>
-        <Searchbar
-          isOpen={!!searchQuery && filteredRecipes.length > 0}
-          onSearch={setSearchQuery}
-        />
-        <Dropdown
-          filteredRecipes={filteredRecipes}
-          searchQuery={searchQuery}
-        ></Dropdown>
-      </DropdownInputWrapper>
+      <SearchField
+        type="name"
+        query={filters.name}
+        onSearch={(q) => updateFilter("name", q)}
+        filteredRecipes={filteredRecipes}
+      />
+      <InputRecipesWrap>
+        <FiltersContainer>
+          <SearchField
+            type="ingredients"
+            query={filters.ingredients}
+            onSearch={(q) => updateFilter("ingredients", q)}
+            options={allIngredients}
+          />
+          <SearchField
+            type="allergens"
+            query={filters.allergens}
+            onSearch={(q) => updateFilter("allergens", q)}
+            options={uniqueAllergens}
+            limit={5}
+          />
+          <SearchField
+            type="tags"
+            query={filters.tags}
+            onSearch={(q) => updateFilter("tags", q)}
+            options={uniqueTags}
+            limit={5}
+          />
+        </FiltersContainer>
 
-      {filteredRecipes.length === 0 ? (
-        <NoRecipesMessage>
-          Couldn't find any recipes matching your search. Maybe try again?
-        </NoRecipesMessage>
-      ) : (
-        <RecipesContainer>
-          {filteredRecipes.map((recipe) => (
-            <RecipeCard
-              key={recipe._id}
-              recipe={recipe}
-              backgroundColor="var(--primary-color)"
-              color="var(--secondary-color)"
-              cookingTimeColor="var(--secondary-color)"
-              cookingTimeBgColor="var(--primary-color)"
-            />
-          ))}
-        </RecipesContainer>
-      )}
+        {filteredRecipes.length === 0 ? (
+          <NoRecipesMessage>
+            Couldn't find any recipes matching your search.
+          </NoRecipesMessage>
+        ) : (
+          <RecipesContainer>
+            {filteredRecipes.map((recipe) => (
+              <RecipeCard
+                key={recipe._id}
+                recipe={recipe}
+                backgroundColor="var(--primary-color)"
+                color="var(--secondary-color)"
+                cookingTimeColor="var(--secondary-color)"
+                cookingTimeBgColor="var(--primary-color)"
+              />
+            ))}
+          </RecipesContainer>
+        )}
+      </InputRecipesWrap>
     </RecipesWrap>
   );
 }

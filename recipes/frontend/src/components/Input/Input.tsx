@@ -1,21 +1,27 @@
 import { CloseButton } from "../button/CloseButton/CloseButton";
-import { Wrapper, Input } from "./styles";
+import { Wrapper, InputStyled } from "./styles";
 import { useSearchInput } from "../../features/hooks/useSearchInput";
 
 type SearchbarProps = {
   onSearch: (query: string) => void;
   isOpen?: boolean;
+  placeholder?: string;
+  value?: string;
 };
 
-export function Searchbar({ onSearch }: SearchbarProps) {
+export function Input({
+  onSearch,
+  value = "",
+  placeholder = "Search recipes or ingredients...",
+}: SearchbarProps) {
   const { inputValue, handleChange, clearInput } = useSearchInput({ onSearch });
 
   return (
     <Wrapper>
-      <Input
+      <InputStyled
         type="search"
-        value={inputValue}
-        placeholder="Search recipes or ingredients..."
+        value={value || inputValue}
+        placeholder={placeholder}
         onChange={handleChange}
       />
       {inputValue && <CloseButton onClick={clearInput} />}

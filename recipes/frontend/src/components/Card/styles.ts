@@ -10,6 +10,6 @@ export const Container = styled.div<{ $backgroundColor?: string; $color?: string
   background-color: ${(props) =>
     props.$backgroundColor || "var(--primary-color)"};
   color: ${(props) => props.$color || "var(--secondary-color)"};
-  max-width: 18rem;
+  max-width: 16rem;
   min-height: 13rem;
 `;

@@ -53,6 +53,6 @@ const RecipeSchema = mongoose.Schema(
 //call this as the model:
 const Recipe = mongoose.model("Recipe", RecipeSchema); //we create the model: on the database it will be called recipes
 
-export default Recipe; //we export it
+export default Recipe;
 
 //we are now going to use this model to save data into our database -> use it in index.js
