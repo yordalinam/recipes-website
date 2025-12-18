@@ -1,9 +1,9 @@
 import { Routes, Route } from "react-router";
-import Navbar from "./components/NavBar/Navbar";
-import Home from "./pages/Home/Home";
-import { Recipes } from "./pages/Recipes/Recipes";
-import MyKitchen from "./pages/MyKitchen";
-import Account from "./pages/Account";
+import Navbar from "../src/components/NavBar/Navbar";
+import Home from "../src/pages/Home/Home";
+import { Recipes } from "../src/pages/Recipes/Recipes";
+import MyKitchen from "../src/pages/MyKitchen";
+import Account from "../src/pages/Account";
 
 function App() {
   return (
